@@ -14,11 +14,8 @@ h, w = image.shape[:2]
 # Displaying the height and width
 print("Height = {}, Width = {}".format(h, w))
 
-image = image[100 : 600, 700 : 1200]
+image = image[150 : 600, 700 : 1200]
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-
-cv2.imshow("Grayscale Image", gray)
-cv2.waitKey(0)
 
 #Sharpen the edges of the image for better contour detection
 sharpen_kernel = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]])
@@ -49,8 +46,12 @@ for c in cnts:
         cv2.rectangle(image, (x, y), (x + w, y + h), (255,0,0), 2) #produces blue-coloured rectangles on each contour found
         image_number += 1 #counts number of contours and adds by 1 in the for loop
 print(image_number)
-cv2.imwrite("Contours detected in Image", image) #displays the blue rectangle-bounded image to display all contours
+cv2.imwrite("Contours.png", image) #saves the blue rectangle-bounded image to display all contours
 
+# Reading and showing the saved image
+image = cv2.imread('Contours.png')
+cv2.imshow("idk", image)
+cv2.waitKey(0)
 
 # # Reading the image using imread() function
 # image = cv2.imread(r'C:\Users\Jacob\Documents\GITHUB-projects\Wordle-bot\wordle-2.0\geeks14.png')
