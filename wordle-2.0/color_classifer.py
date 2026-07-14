@@ -12,8 +12,10 @@ valid_data = np.array([1, 0, 2, 2, 0, 0, 0, 2, 2, 1, 0, 1, 2, 2, 0, 0, 2, 2, 2, 
 
 #Create model
 model = tf.keras.models.Sequential([
-  tf.keras.layers.Dense(3, input_shape=[3], activation='softmax') #3 neurons layer linked to 1 neuron output layer. 
+  tf.keras.layers.Input(shape=(3,)), #Input layer with 3 neurons for RGB values
+  tf.keras.layers.Dense(3, activation= 'softmax')
 ])
+
 model.compile(optimizer='sgd', loss='sparse_categorical_crossentropy', metrics=['accuracy']) #Optimizer settings
 
 #fit the model
@@ -21,5 +23,8 @@ history = model.fit(
         training_data, valid_data, epochs=100
         )
 
+loss, accuracy = model.evaluate(training_data, valid_data, verbose=0)
+print(f"Training accuracy: {accuracy:.2%}")
+
 #save the model
-model.save('Models/color.h5')
+model.save('Models/color.keras')
