@@ -35,8 +35,8 @@ def getRowData(row):
         
         #get the current letter
         print(row, i, letter)
-        print(f"Alphabets/ROI_{letter}.png")
-        img = cv2.imread(f'Alphabets/ROI_{letter}.png')
+        print(f"Wordle_data/Alphabets/ROI_{letter}.png")
+        img = cv2.imread(f'Wordle_data/Alphabets/ROI_{letter}.png')
         final_color, RGB = predict_color(img)
         print(final_color, RGB)
         if final_color == "grey":
@@ -78,6 +78,7 @@ def playRow():
     global bank, row
 
     get_board_data()
+    time.sleep(1)
 
     # get the current row
     state = getRowData(row)
@@ -149,7 +150,7 @@ def play_game():
 
     pa.click(width/2, height/2)
     # first word
-    word = "salet"  # or pick from bank
+    word = "sport"  # or pick from bank
     pa.write(word)
     pa.press('enter')
     time.sleep(3)
@@ -206,6 +207,8 @@ while True:
 
     if key == "space":
         play_game()
+        print("done")
+        break
     elif key == "q":
         print("Exiting...")
         break

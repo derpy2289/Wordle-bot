@@ -62,7 +62,7 @@ def get_board_data():
                 ROI = image[y:y+h, x:x+w] #crops the image to the square-containing alphabet
                 #print(image_number, cv2.contourArea(c))#finds out area of each contour
                 ROI = cv2.resize(ROI, (68, 68))#Resizes the square-containing alphabet to 68x68 pixels
-                cv2.imwrite('Alphabets/ROI_{}.png'.format(image_number), ROI) #saves the square-containing alphabet
+                cv2.imwrite('Wordle_data/Alphabets/ROI_{}.png'.format(image_number), ROI) #saves the square-containing alphabet
                 cv2.rectangle(image, (x, y), (x + w, y + h), (255,0,0), 2) #produces blue-coloured rectangles on each contour found
                 image_number += 1 #counts number of contours and adds by 1 in the for loop
     #print(image_number)
